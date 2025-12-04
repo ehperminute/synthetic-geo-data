@@ -16,10 +16,9 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
     np.random.seed(seed)
 
     records = []
-
     for _, row in df_students.iterrows():
         dropped = False
-
+        
         for sem in range(1, n_semesters + 1):
             if dropped:
                 break
@@ -31,6 +30,7 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
                 + 0.03 * (row["internet_access"] == 0)
                 + 0.02 * (row["transport_time"] > 60)
                 + 0.03 * (row["modality"] == "En Línea")
+                + 0.05 * (n_semesters - row["semester"])
             )
 
             dropped_flag = np.random.rand() < p_dropout
