@@ -40,6 +40,7 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
                 "semester": sem,
                 "dropped": int(dropped_flag),
                 "p_dropout": p_dropout,
+                "colonia_id": row["colonia_id"]
             })
 
             if dropped_flag:
