@@ -24,7 +24,7 @@ def normalize(text):
 
 def load_colonias(geojson_path):
     gdf = gpd.read_file(geojson_path)
-
+    print(gdf.columns)
     gdf["colonia_name_clean"] = gdf["nombre"].apply(normalize)
 
     gdf["colonia_id"] = range(1, len(gdf) + 1)
