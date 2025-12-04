@@ -30,7 +30,7 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
                 + 0.03 * (row["internet_access"] == 0)
                 + 0.02 * (row["transport_time"] > 60)
                 + 0.03 * (row["modality"] == "En Línea")
-                + 0.05 * ([6, 4, 3, 2, 2, 2, 2, 2][row["semester"]])
+                + 0.05 * ([10, 7, 4, 3, 2, 2, 2, 2][row["semester"]])
             )
 
             dropped_flag = np.random.rand() < p_dropout
