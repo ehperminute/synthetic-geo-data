@@ -21,7 +21,7 @@ def plot_dropout_by_semester(panel_df):
 
 def plot_risk_map(colonias_gdf, risk_df):
     """Join the risk table and plot a colored map."""
-    merged = colonias_gdf.merge(risk_df, on="colonia", how="left")
+    merged = colonias_gdf.merge(risk_df, on="colonia_id", how="left")
 
     fig = px.choropleth(
         merged,
