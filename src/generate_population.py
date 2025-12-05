@@ -15,7 +15,7 @@ from faker import Faker
 fake = Faker('es_MX')
 
 
-def generate_students(n_students=12000, seed=42, n_semesters=8):
+def generate_students(n_students=100_000, seed=42, n_semesters=8):
     """Generate synthetic students with demographic and SES attributes."""
     np.random.seed(seed)
 
