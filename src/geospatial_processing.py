@@ -30,15 +30,24 @@ def load_colonias(geojson_path):
     return gdf[["colonia_id", "colonia_name_clean", "geometry", "alcaldia"]]
 
 
-def aggregate_risk(panel_df, colonias_df):
-    """Compute mean dropout risk per colonia."""
-    risk_per_student = panel_df.groupby(["student_id", "colonia_id"])["dropped"].max()
-    print(risk_per_student)
-    # attach risk to students
-    students_risk = risk_per_student.reset_index()
-    students_risk.columns = ["student_id", "colonia_id", "ever_dropped"]
+def aggregate_risk(panel_df, students_df, colonias_df):
+    """Correct aggregation of dropout risk by colonia."""
 
-    # merge with colonias
-    merged = students_risk.merge(colonias_df, on="colonia_id", how="left")
+    # 1) Compute per-student dropout (0 or 1)
+    student_dropout = panel_df.groupby("student_id")["dropped"].max().reset_index()
+    student_dropout.columns = ["student_id", "ever_dropped"]
 
-    return merged.groupby("colonia_id")["ever_dropped"].mean().reset_index()
+    # 2) Attach dropout to students
+    merged = students_df.merge(student_dropout, on="student_id", how="left")
+
+    # 3) Compute average risk per colonia
+    risk = merged.groupby("colonia_id")["ever_dropped"].mean().reset_index()
+
+    # 4) Merge with full colonia list (so holes disappear)
+    risk_full = colonias_df.merge(risk, on="colonia_id", how="left")
+
+    # colonias with no students → assign 0 (or NaN if you prefer)
+    risk_full["ever_dropped"] = risk_full["ever_dropped"].fillna(0)
+
+    return risk_full
+
