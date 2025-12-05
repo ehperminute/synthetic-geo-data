@@ -29,8 +29,7 @@ def generate_students(n_students=1200, seed=42, n_semesters=8):
         "ses_index": np.random.normal(0, 1, n_students),  # socioeconomic indicator
         "internet_access": np.random.choice([0, 1], n_students, p=[0.25, 0.75]),
         "transport_time": np.abs(np.random.normal(40, 12, n_students)).round().astype(int),
-        "modality": np.random.choice(modalities, n_students, p=[0.7, 0.2, 0.1]),
-        "semester": 1 + np.random.choice(list(range(n_semesters)), p=[0.2, 0.15, 0.13, 0.12, 0.1, 0.1, 0.1, 0.1])
+        "modality": np.random.choice(modalities, n_students, p=[0.7, 0.2, 0.1])
     }
 
     df = pd.DataFrame(data)
