@@ -25,6 +25,13 @@ def normalize(text):
 def load_colonias(geojson_path):
     gdf = gpd.read_file(geojson_path)
     gdf["colonia_name_clean"] = gdf["colonia"].apply(normalize)
+    # ensure each colonia_name_clean is unique
+    gdf["colonia_name_clean"] = (
+    gdf["colonia_name_clean"]
+    + "_" 
+    + gdf.groupby("colonia_name_clean").cumcount().astype(str)
+    )
+
     gdf["colonia_id"] = range(1, len(gdf) + 1)
     gdf["alcaldia"] = gdf["alc"]
     return gdf[["colonia_id", "colonia_name_clean", "geometry", "alcaldia"]]
