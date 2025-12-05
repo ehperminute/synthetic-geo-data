@@ -32,7 +32,7 @@ def load_colonias(geojson_path):
 def aggregate_risk(panel_df, colonias_df):
     """Compute mean dropout risk per colonia."""
     risk_per_student = panel_df.groupby("student_id")["dropped"].max()
-
+    print(risk_per_student)
     # attach risk to students
     students_risk = risk_per_student.reset_index()
     students_risk.columns = ["student_id", "ever_dropped"]
