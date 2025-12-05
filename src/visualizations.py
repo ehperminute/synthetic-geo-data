@@ -19,15 +19,12 @@ def plot_dropout_by_semester(panel_df):
     return fig
 
 
-def plot_risk_map(colonias_gdf, risk_df):
-    """Join the risk table and plot a colored map."""
-    merged = colonias_gdf.merge(risk_df, on="colonia_id", how="left")
-
+def plot_risk_map(risk_full):
     fig = px.choropleth(
-        merged,
-        geojson=merged.geometry.__geo_interface__,
-        locations=merged.index,
-        color="dropped",
+        risk_full,
+        geojson=risk_full.geometry.__geo_interface__,
+        locations=risk_full.index,
+        color="ever_dropped",
         projection="mercator",
         title="Dropout Risk by Colonia",
     )
