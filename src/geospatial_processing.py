@@ -19,7 +19,7 @@ def normalize(text):
 def load_colonias(geojson_path):
     gdf = gpd.read_file(geojson_path)
     gdf = gdf[["ID", "NOMUT", "NOMDT", "geometry"]]
-    colnames = ["colonia_id", "colonia_name", "alcaldia", "geometry"]
+    colnames = ["colonia_id", "colonia_name", "alcaldia_name", "geometry"]
     gdf.columns = colnames
     gdf = calculate_area_density(gdf)
     return gdf
