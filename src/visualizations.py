@@ -102,3 +102,67 @@ def plot_risk_map1(risk_full, city_name="Mexico City"):
     # ))
     
     return fig
+
+
+def plot_risk_map2(risk_full, city_name="Mexico City", mapbox_token=None):
+    """
+    Mapbox version - shows roads, districts, and better basemaps
+    Requires Mapbox token (free account at mapbox.com)
+    """
+    
+    # Center on the data's centroid
+    center_lat = risk_full.geometry.centroid.y.mean()
+    center_lon = risk_full.geometry.centroid.x.mean()
+    
+    fig = px.choropleth_mapbox(
+        risk_full,
+        geojson=risk_full.geometry,
+        locations=risk_full.index,
+        color="ever_dropped",
+        color_continuous_scale="Viridis",  # Or try "Plasma", "Inferno", "Cividis"
+        range_color=[risk_full["ever_dropped"].min(), 
+                    risk_full["ever_dropped"].max()],
+        mapbox_style="carto-positron",  # Light, professional style
+        # mapbox_style="open-street-map",  # Shows roads/streets
+        # mapbox_style="stamen-terrain",  # Shows topography
+        zoom=10,
+        center={"lat": center_lat, "lon": center_lon},
+        opacity=0.7,  # Slightly transparent
+        labels={"ever_dropped": "Dropout Risk"},
+        title=f"<b>Student Dropout Risk Map</b><br><sup>{city_name}</sup>",
+        hover_data={"ever_dropped": ":.2f"}
+    )
+    
+    # Professional layout updates
+    fig.update_layout(
+        margin=dict(l=20, r=20, t=80, b=20),
+        title_font=dict(size=20, family="Arial, sans-serif"),
+        title_x=0.5,
+        coloraxis_colorbar=dict(
+            title="Risk Level",
+            title_font=dict(size=12),
+            tickfont=dict(size=10),
+            thickness=20,
+            len=0.8,
+            yanchor="middle",
+            y=0.5
+        ),
+        paper_bgcolor="white",
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="Arial"
+        )
+    )
+    
+    # If you have a Mapbox token for more styles
+    if mapbox_token:
+        fig.update_layout(
+            mapbox=dict(
+                style="light",  # or "dark", "satellite-streets", etc.
+                accesstoken=mapbox_token,
+                zoom=11
+            )
+        )
+    
+    return fig
