@@ -1,11 +1,5 @@
 """
 geospatial_processing.py
-------------------------
-
-Loads and preprocesses GeoJSON files, normalizes colonia names,
-and merges aggregated risk indicators for mapping.
-
-This file assumes small GeoJSON files for CDMX-like regions.
 """
 
 import geopandas as gpd
@@ -24,17 +18,10 @@ def normalize(text):
 
 def load_colonias(geojson_path):
     gdf = gpd.read_file(geojson_path)
-    gdf["colonia_name_clean"] = gdf["colonia"].apply(normalize)
-    # ensure each colonia_name_clean is unique
-    gdf["colonia_name_clean"] = (
-    gdf["colonia_name_clean"]
-    + "_" 
-    + gdf.groupby("colonia_name_clean").cumcount().astype(str)
-    )
-
-    gdf["colonia_id"] = range(1, len(gdf) + 1)
-    gdf["alcaldia"] = gdf["alc"]
-    return gdf[["colonia_id", "colonia_name_clean", "geometry", "alcaldia"]]
+    gdf = gdf[["ID", "NOMUT", "NOMDT", "geometry"]]
+    colnames = ["colonia_id", "colonia_name", "alcaldia", "geometry"]
+    gdf.columns = colnames
+    return gdf
 
 
 def aggregate_risk(panel_df, students_df, colonias_df):
