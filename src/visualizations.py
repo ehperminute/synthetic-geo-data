@@ -22,7 +22,7 @@ def plot_dropout_by_semester(panel_df):
 def plot_risk_map(risk_full):
     fig = px.choropleth(
         risk_full,
-        geojson=risk_full.geometry.__geo_interface__,
+        geojson=risk_full.geometry,
         locations=risk_full.index,
         color="ever_dropped",
         projection="mercator",
