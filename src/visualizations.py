@@ -187,7 +187,7 @@ def plot_risk_map3(risk_full, city_name="Mexico City"):
         geojson=risk_plot.geometry,
         locations=risk_plot.index,
         color="ever_dropped",
-        color_continuous_scale="Viridis",  # Professional colors
+        color_continuous_scale="YlOrRd", 
         mapbox_style="open-street-map",  # ← THIS SHOWS ROADS!
         zoom=11,  # Adjust zoom level (higher = more detailed)
         center={"lat": center_lat, "lon": center_lon},
