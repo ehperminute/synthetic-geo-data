@@ -16,7 +16,6 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
                 0.05
                 + 0.04 * (row["ses_index"] < -1)
                 + 0.03 * (row["internet_access"] == 0)
-                + 0.02 * (row["transport_time"] > 60)
                 + 0.03 * (row["modality"] == "En Línea")
             )
 
