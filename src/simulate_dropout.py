@@ -5,7 +5,7 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
     rng = np.random.default_rng(seed)
 
     n = len(df_students)
-
+    
     # base dropout probability per student (vectorized)
     p_base = (
         0.05
@@ -16,11 +16,12 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
 
     alive = np.ones(n, dtype=bool)
     records = []
-
+    baseline = np.array([0.18, 0.10, 0.06, 0.04, 0.03, 0.025, 0.02, 0.02])
     for sem in range(1, n_semesters + 1):
         # only sample for students still enrolled
         u = rng.random(n)
-        dropped = (u < p_base) & alive
+        p = p_base * baseline
+        dropped = (u < p) & alive
 
         records.append(pd.DataFrame({
             "student_id": df_students["student_id"],
