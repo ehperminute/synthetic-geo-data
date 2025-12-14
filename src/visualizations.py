@@ -166,3 +166,86 @@ def plot_risk_map2(risk_full, city_name="Mexico City", mapbox_token=None):
         )
     
     return fig
+
+import plotly.express as px
+
+
+
+def plot_risk_map3(risk_full, city_name="Mexico City"):
+ 
+    # Make sure we have latitude/longitude (EPSG:4326)
+    if risk_full.crs != 'EPSG:4326':
+        risk_plot = risk_full.to_crs(epsg=4326)
+    else:
+        risk_plot = risk_full.copy()
+    
+    # Get center from bounds (works for all geometry types)
+    bounds = risk_plot.total_bounds  # [minx, miny, maxx, maxy]
+    center_lon = (bounds[0] + bounds[2]) / 2
+    center_lat = (bounds[1] + bounds[3]) / 2
+    
+    # Create the map
+    fig = px.choropleth(
+        risk_plot,
+        geojson=risk_plot.geometry.__geo_interface__,
+        locations=risk_plot.index,
+        color="ever_dropped",
+        color_continuous_scale="Viridis",  # Professional color scale
+        range_color=[risk_plot["ever_dropped"].min(), 
+                    risk_plot["ever_dropped"].max()],
+        projection="mercator",  # or "natural earth", "equirectangular"
+        center={"lat": center_lat, "lon": center_lon},
+        labels={"ever_dropped": "Dropout Risk"},
+        title=f"<b>Student Dropout Risk Map</b><br><sup>{city_name}</sup>",
+        hover_name=risk_plot.index,  # Show neighborhood names
+        hover_data={"ever_dropped": ":.2f"}  # 2 decimal places
+    )
+    
+    # Make it look professional
+    fig.update_layout(
+        # Reduce margins
+        margin=dict(l=20, r=20, t=80, b=20),
+        
+        # Professional title
+        title_font=dict(size=20, family="Arial, sans-serif"),
+        title_x=0.5,  # Center title
+        
+        # Nice colorbar
+        coloraxis_colorbar=dict(
+            title="Risk Level",
+            title_font=dict(size=12),
+            tickfont=dict(size=10),
+            thickness=20,
+            len=0.8
+        ),
+        
+        # Clean background
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        
+        # Better hover labels
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="Arial",
+            bordercolor="gray"
+        )
+    )
+    
+    # Configure the map view
+    fig.update_geos(
+        fitbounds="locations",  # Zoom to your data
+        visible=True,  # Show map background
+        showcountries=False,
+        showcoastlines=False,
+        showland=True,
+        landcolor="lightgray",  # Light background
+        showocean=True,
+        oceancolor="aliceblue",
+        showsubunits=True,  # Show state/province borders
+        subunitcolor="white",
+        subunitwidth=1,
+        showframe=False
+    )
+    
+    return fig
