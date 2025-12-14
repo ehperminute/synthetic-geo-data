@@ -20,7 +20,7 @@ def simulate_semesters(df_students, n_semesters=8, seed=42):
     for sem in range(1, n_semesters + 1):
         # only sample for students still enrolled
         u = rng.random(n)
-        p = p_base * baseline
+        p = p_base * baseline[sem]
         dropped = (u < p) & alive
 
         records.append(pd.DataFrame({
