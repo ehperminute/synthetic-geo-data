@@ -109,7 +109,7 @@ def plot_risk_map2(risk_full, city_name="Mexico City", mapbox_token=None):
     Mapbox version - shows roads, districts, and better basemaps
     Requires Mapbox token (free account at mapbox.com)
     """
-    
+    risk_full = risk_full.to_crs(epsg=32614)
     # Center on the data's centroid
     center_lat = risk_full.geometry.centroid.y.mean()
     center_lon = risk_full.geometry.centroid.x.mean()
