@@ -37,7 +37,7 @@ def plot_risk_map(risk_full, city_name="Mexico City"):
         zoom=11,  # Adjust zoom level (higher = more detailed)
         center={"lat": center_lat, "lon": center_lon},
         opacity=0.8,  # Make polygons slightly transparent to see roads
-        labels={"ever_dropped": "Dropout Risk Score", "NOMDT": "Alcaldia"},
+        labels={"ever_dropped": "Dropout Rate", "NOMDT": "Alcaldia"},
         title=f"<b>Dropout Risk Map - {city_name}</b>",
         hover_name=risk_plot.NOMUT,  # Show neighborhood names
         hover_data={"ever_dropped": ":.1%", "NOMDT": True}
