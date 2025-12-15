@@ -34,6 +34,8 @@ synthetic-geo-data/
 ├── README_es.md
 └── .gitignore
 ```
+[Screenshot from 2025-12-14 21-37-58.png]
+
 ---
 
 ## 🚀 Quick start (Google Colab)
