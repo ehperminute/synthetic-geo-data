@@ -34,7 +34,7 @@ synthetic-geo-data/
 ├── README_es.md
 └── .gitignore
 ```
-!(Screenshot from 2025-12-14 21-37-58.png)
+![](Screenshot from 2025-12-14 21-37-58.png)
 
 ---
 
@@ -85,8 +85,6 @@ No local install required when using Colab.
 - shapely
 - statsmodels
 - faker
-
-> Note: `sqlite3` is a Python standard library module; no extra install required. In Colab, `geopandas` may require install steps included in the notebook.
 
 ---
 
