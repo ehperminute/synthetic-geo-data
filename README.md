@@ -23,8 +23,7 @@ synthetic-geo-data/
 │ ├── generate_population.py
 │ ├── simulate_dropout.py
 │ ├── geospatial_processing.py
-│ ├── visualizations.py
-│ └── utils.py
+│ └── visualizations.py
 │
 ├── requirements.txt
 ├── README.md
