@@ -8,13 +8,10 @@ Este repositorio demuestra un flujo reproducible que combina generación de dato
 
 ## 📂 Estructura del proyecto
 
-
+```
 synthetic-geo-data/
 │
 ├── data/
-│ ├── raw/
-│ ├── interim/
-│ └── processed/
 │
 ├── notebooks/
 │ └── education_analytics_simulation.ipynb
@@ -23,14 +20,13 @@ synthetic-geo-data/
 │ ├── generate_population.py
 │ ├── simulate_dropout.py
 │ ├── geospatial_processing.py
-│ ├── visualizations.py
-│ └── utils.py
+│ └── visualizations.py
 │
 ├── requirements.txt
 ├── README.md
 ├── README_es.md
 └── .gitignore
-
+```
 2. Ejecuta las celdas del notebook en orden. El notebook:
    - descarga o referencia archivos GeoJSON pequeños (o usa enlaces),
    - genera datos sintéticos de estudiantes,
