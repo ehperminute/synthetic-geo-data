@@ -34,8 +34,9 @@ synthetic-geo-data/
 ├── README_es.md
 └── .gitignore
 ```
-![](2025-12-1421-35-29.png)
 ![](2025-12-1421-37-58.png)
+![](2025-12-1421-35-29.png)
+
 ---
 
 ## 🚀 Quick start (Google Colab)
