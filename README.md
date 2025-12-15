@@ -38,7 +38,7 @@ synthetic-geo-data/
 
 ## 🚀 Quick start (Google Colab)
 
-1. Open the notebook in Colab (replace `YOUR_COLAB_LINK` with the notebook link after upload):
+1. Open the notebook in Colab [dropout_mapping](https://colab.research.google.com/drive/1sneX2ZAtxctFCfk7WDqiMGeSuMmE_BJU?usp=sharing):
 
 
 2. Run the notebook cells in order. The notebook will:
