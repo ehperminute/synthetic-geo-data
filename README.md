@@ -55,7 +55,7 @@ No local install required when using Colab.
 
 ---
 
-## 🧩 What this project demonstrates
+## What this project demonstrates
 
 - **Synthetic data generation** for longitudinal student trajectories.  
 - **Data engineering & ETL** (CSV / SQLite ingestion pipeline).  
@@ -64,9 +64,15 @@ No local install required when using Colab.
 - **Visualization** (maps, model diagnostics, top-risk identification).  
 - **Reproducible notebook workflow** suitable for sharing in Colab.
 
----
+Assumptions & limitations
 
-## 🛠️ Core files & purpose
+Dropout probabilities are synthetic and illustrative
+
+No causal interpretation is intended
+
+Geographic weighting uses area as a proxy for population density
+
+## Core files & purpose
 
 - `src/generate_population.py` — create synthetic students and demographic attributes.  
 - `src/simulate_dropout.py` — simulate semester-level records and dropout events.  
