@@ -3,7 +3,7 @@
 
 **Short**: Synthetic data project that generates student trajectories, simulates dropout risk, builds a small relational database, fits an interpretable predictive model, and maps risk by neighborhood.
 
-This repository demonstrates a reproducible data workflow combining synthetic data generation, geospatial processing, predictive modeling, and visualization. It is designed to be run in **Google Colab** (no local installation required) and is suitable for showcasing skills relevant to data analyst, education analytics, and applied data science roles.
+This repository demonstrates a reproducible data workflow combining synthetic data generation, geospatial processing, predictive modeling, and visualization. It is designed to be run in **Google Colab** (no local installation required).
 
 ---
 
