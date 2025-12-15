@@ -38,7 +38,7 @@ synthetic-geo-data/
 
 ## 🚀 Quick start (Google Colab)
 
-1. Open the notebook in Colab [dropout_mapping](https://colab.research.google.com/drive/1sneX2ZAtxctFCfk7WDqiMGeSuMmE_BJU?usp=sharing):
+1. Open the notebook in Colab [CDMX synthetic dropout.ipynb](https://colab.research.google.com/drive/1sneX2ZAtxctFCfk7WDqiMGeSuMmE_BJU?usp=sharing):
 
 
 2. Run the notebook cells in order (Runtime -> Run all or Ctrl + F9). The notebook will:
